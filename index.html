@@ -244,7 +244,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: all 0.5s;
         }
         .cta-button:hover::before {
@@ -1773,120 +1773,60 @@
             transform: translateY(-2px);
         }
 
-        /* Contact Page */
-        .contact-page {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--blanco);
-            z-index: 1100;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        .contact-page.active {
-            display: block;
-        }
-        .contact-header {
+        /* Footer Styles */
+        .footer {
             background-color: var(--azul-maro);
             color: var(--blanco);
-            padding: 20px 40px;
-            text-align: center;
-        }
-        .contact-header h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-        }
-        .contact-header p {
-            font-size: 16px;
-            opacity: 0.9;
-        }
-        .contact-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        @media (max-width: 768px) {
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .contact-title {
-            font-size: 28px;
-            color: var(--azul-maro);
-            margin-bottom: 10px;
-        }
-        .contact-description {
-            font-size: 16px;
-            color: var(--gris-oscuro);
+            padding: 60px 20px 20px;
+            font-size: 14px;
             line-height: 1.6;
         }
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 16px;
-            color: var(--gris-oscuro);
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+            text-align: left;
         }
-        .contact-method i {
-            font-size: 24px;
-            color: var(--azul-maro);
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
         }
-        .contact-form {
-            background-color: var(--gris);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--azul-maro);
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--gris-claro);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
             background-color: var(--blanco);
         }
-        .form-group input:focus, .form-group textarea:focus {
-            border-color: var(--azul-maro);
-            outline: none;
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        .submit-btn {
-            width: 100%;
-            background-color: var(--azul-maro);
+        .footer-section a:hover {
             color: var(--blanco);
-            border: none;
-            padding: 14px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
-        .submit-btn::before {
+        .footer-contact-btn {
+            background-color: transparent;
+            color: var(--blanco);
+            border: 2px solid var(--blanco);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-contact-btn::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1896,18 +1836,57 @@
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: all 0.5s;
         }
-        .submit-btn:hover::before {
+        .footer-contact-btn:hover::before {
             left: 100%;
         }
-        .submit-btn:hover {
-            background-color: var(--negro);
+        .footer-contact-btn:hover {
+            background-color: var(--blanco);
+            color: var(--azul-maro);
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        .error {
-            color: #e74c3c;
-            font-size: 14px;
-            margin-top: 5px;
+        .social-link {
+            display: block;
+            font-weight: 500;
+            position: relative;
+            padding-left: 30px;
+        }
+        .social-link::before {
+            content: '📸';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .payment-img-placeholder, .shipping-img-placeholder {
+            width: 3px;
+            height: 3px;
+            background-color: transparent;
+            border: 1px dashed rgba(255, 255, 255, 0.5);
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+        }
+
+        /* Animación de resaltado para el botón de contacto en el header */
+        .nav-menu a.highlight-contact,
+        .mobile-nav-menu a.highlight-contact {
+            animation: pulse 1s ease-in-out;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--azul-maro) !important;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
@@ -1927,7 +1906,7 @@
                 <li><a class="nav-link" data-section="inicio">Inicio</a></li>
                 <li><a class="nav-link" data-section="productos">Productos</a></li>
                 <li><a class="nav-link" data-section="quienes-somos">Quiénes Somos</a></li>
-                <li><a href="https://mattuscuderi-004.github.io/velocitycouture1/#contacto">Contacto</a></li>
+                <li><a class="nav-link" data-section="contacto">Contacto</a></li>
             </ul>
             <div class="search-cart">
                 <div class="search-icon">🔍</div>
@@ -1942,7 +1921,7 @@
             <li><a class="mobile-nav-link" data-section="inicio">Inicio</a></li>
             <li><a class="mobile-nav-link" data-section="productos">Productos</a></li>
             <li><a class="mobile-nav-link" data-section="quienes-somos">Quiénes Somos</a></li>
-            <li><a href="https://mattuscuderi-004.github.io/velocitycouture1/#contacto">Contacto</a></li>
+            <li><a class="mobile-nav-link" data-section="contacto">Contacto</a></li>
         </ul>
     </div>
     <!-- Hero Section -->
@@ -2228,12 +2207,15 @@
     </section>
     <!-- Sección Quiénes Somos -->
     <section id="quienes-somos" class="about-section">
-        <h2 class="section-title">Quiénes Somos</h2
+        <h2 class="section-title">Quiénes Somos</h2>
+        <div class="about-content">
+            <p class="about-text">Velocity Couture nació con la premisa de combinar estilo urbano con calidad premium. Cada prenda está diseñada para quienes buscan destacar sin sacrificar comodidad.</p>
+            <p class="about-text">Nuestra filosofía: velocidad en el diseño, elegancia en los detalles, y calidad que perdura. Trabajamos con materiales seleccionados y procesos de producción sostenibles.</p>
             <div class="about-mission">
                 <h3>Nuestra Misión</h3>
                 <p class="about-mission-text">Revolucionar el streetwear argentino con diseños innovadores, materiales de alta calidad y un compromiso con la sostenibilidad. Creemos que la moda debe ser accesible, duradera y expresiva.</p>
             </div>
-            <p class="about-text">Fundada en 2025, Velocity Couture ha crecido rápidamente gracias a nuestra comunidad de clientes que valoran el diseño auténtico y la calidad superior. Cada colección es el resultado de meses de investigación, diseño y pruebas para asegurar que nuestras prendas no solo se vean bien, sino que también ofrezcan la mejor experiencia de uso. MICA CORNUDAAAAAAAAAAAAAAAAAAAAAAA.</p>
+            <p class="about-text">Fundada en 2020, Velocity Couture ha crecido rápidamente gracias a nuestra comunidad de clientes que valoran el diseño auténtico y la calidad superior. Cada colección es el resultado de meses de investigación, diseño y pruebas para asegurar que nuestras prendas no solo se vean bien, sino que también ofrezcan la mejor experiencia de uso.</p>
             <p class="about-text">Únete a la velocidad.</p>
             <div class="values-grid">
                 <div class="value-card">
@@ -2486,59 +2468,43 @@
         </div>
     </div>
 
-    <!-- Contact Page -->
-    <div class="contact-page">
-        <div class="contact-header">
-            <h1>Contáctanos</h1>
-            <p>Estamos aquí para ayudarte con cualquier consulta</p>
-        </div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2 class="contact-title">Estamos para ayudarte</h2>
-                <p class="contact-description">¿Tienes alguna pregunta sobre nuestros productos, envíos o devoluciones? No dudes en contactarnos. Nuestro equipo está disponible para asistirte y asegurarnos de que tu experiencia con Velocity Couture sea excelente.</p>
-                
-                <div class="contact-method">
-                    <i>📱</i>
-                    <span><strong>WhatsApp:</strong> +54 9 11 1234-5678</span>
-                </div>
-                <div class="contact-method">
-                    <i>✉️</i>
-                    <span><strong>Email:</strong> hola@velocitycouture.com</span>
-                </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <button class="footer-contact-btn">Ir a Contacto</button>
             </div>
-            <div class="contact-form">
-                <h3>Contáctanos directamente</h3>
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label for="contact-name">Nombre</label>
-                        <input type="text" id="contact-name" required>
-                        <div class="error" id="name-error-contact"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-email">Email</label>
-                        <input type="email" id="contact-email" required>
-                        <div class="error" id="email-error-contact"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-phone">Teléfono</label>
-                        <input type="tel" id="contact-phone" required>
-                        <div class="error" id="phone-error-contact"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-subject">Asunto</label>
-                        <input type="text" id="contact-subject" required>
-                        <div class="error" id="subject-error-contact"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="contact-message">Mensaje</label>
-                        <textarea id="contact-message" required></textarea>
-                        <div class="error" id="message-error-contact"></div>
-                    </div>
-                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
-                </form>
+            <div class="footer-section">
+                <h3>Redes Sociales</h3>
+                <a href="https://www.instagram.com/velocity_couture/?hl=es" target="_blank" class="social-link">
+                    @velocity_couture
+                </a>
+            </div>
+            <div class="footer-section">
+                <h3>Medios de Pago</h3>
+                <p>Aceptamos todas las tarjetas y transferencias</p>
+                <div class="payment-img-placeholder"></div>
+            </div>
+            <div class="footer-section">
+                <h3>Navegación</h3>
+                <ul class="footer-nav">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Formas de Envío</h3>
+                <p>Envíos a todo el país y retiro en local</p>
+                <div class="shipping-img-placeholder"></div>
             </div>
         </div>
-    </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Velocity Couture. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
     <script>
         // Animación de scroll para elementos
@@ -3232,6 +3198,24 @@
             if (valid) {
                 alert('¡Mensaje enviado! Nos pondremos en contacto contigo pronto.');
                 contactForm.reset();
+            }
+        });
+
+        // Efecto para el botón "Ir a Contacto" en el footer
+        document.querySelector('.footer-contact-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Ir al header
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Resaltar el botón de contacto en el header
+            const contactLink = document.querySelector('a[data-section="contacto"]');
+            if (contactLink) {
+                // Añadir clase de resaltado
+                contactLink.classList.add('highlight-contact');
+                // Quitarla después de 2 segundos
+                setTimeout(() => {
+                    contactLink.classList.remove('highlight-contact');
+                }, 2000);
             }
         });
     </script>
