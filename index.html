@@ -3122,65 +3122,64 @@
         const contactPage = document.querySelector('.contact-page');
         const contactForm = document.getElementById('contact-form');
 
-        // Validar y enviar formulario de contacto
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            let valid = true;
-            const name = document.getElementById('contact-name');
-            const email = document.getElementById('contact-email');
-            const phone = document.getElementById('contact-phone');
-            const subject = document.getElementById('contact-subject');
-            const message = document.getElementById('contact-message');
+        // Validar formulario de contacto (sin bloquear el envío)
+contactForm.addEventListener('submit', (e) => {
+    let valid = true;
+    const name = document.getElementById('contact-name');
+    const email = document.getElementById('contact-email');
+    const phone = document.getElementById('contact-phone');
+    const subject = document.getElementById('contact-subject');
+    const message = document.getElementById('contact-message');
 
-            const nameError = document.getElementById('name-error-contact');
-            const emailError = document.getElementById('email-error-contact');
-            const phoneError = document.getElementById('phone-error-contact');
-            const subjectError = document.getElementById('subject-error-contact');
-            const messageError = document.getElementById('message-error-contact');
+    const nameError = document.getElementById('name-error-contact');
+    const emailError = document.getElementById('email-error-contact');
+    const phoneError = document.getElementById('phone-error-contact');
+    const subjectError = document.getElementById('subject-error-contact');
+    const messageError = document.getElementById('message-error-contact');
 
-            // Validaciones
-            if (!name.value.trim()) {
-                nameError.textContent = 'El nombre es obligatorio';
-                valid = false;
-            } else {
-                nameError.textContent = '';
-            }
+    // Validaciones
+    if (!name.value.trim()) {
+        nameError.textContent = 'El nombre es obligatorio';
+        valid = false;
+    } else {
+        nameError.textContent = '';
+    }
 
-            if (!email.value.trim()) {
-                emailError.textContent = 'El email es obligatorio';
-                valid = false;
-            } else if (!/\S+@\S+\.\S+/.test(email.value)) {
-                emailError.textContent = 'El email no es válido';
-                valid = false;
-            } else {
-                emailError.textContent = '';
-            }
+    if (!email.value.trim()) {
+        emailError.textContent = 'El email es obligatorio';
+        valid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+        emailError.textContent = 'El email no es válido';
+        valid = false;
+    } else {
+        emailError.textContent = '';
+    }
 
-            if (!phone.value.trim()) {
-                phoneError.textContent = 'El teléfono es obligatorio';
-                valid = false;
-            } else {
-                phoneError.textContent = '';
-            }
+    if (!phone.value.trim()) {
+        phoneError.textContent = 'El teléfono es obligatorio';
+        valid = false;
+    } else {
+        phoneError.textContent = '';
+    }
 
-            if (!subject.value.trim()) {
-                subjectError.textContent = 'El asunto es obligatorio';
-                valid = false;
-            } else {
-                subjectError.textContent = '';
-            }
+    if (!subject.value.trim()) {
+        subjectError.textContent = 'El asunto es obligatorio';
+        valid = false;
+    } else {
+        subjectError.textContent = '';
+    }
 
-            if (!message.value.trim()) {
-                messageError.textContent = 'El mensaje es obligatorio';
-                valid = false;
-            } else {
-                messageError.textContent = '';
-            }
+    if (!message.value.trim()) {
+        messageError.textContent = 'El mensaje es obligatorio';
+        valid = false;
+    } else {
+        messageError.textContent = '';
+    }
 
-            if (valid) {
-                alert('¡Mensaje enviado! Nos pondremos en contacto contigo pronto.');
-                contactForm.reset();
-            }
+    if (!valid) {
+        e.preventDefault(); // Solo detener si hay errores
+    }
+    // Si es válido, deja que el formulario se envíe a Formspren
         });
 
         // Detectar si la URL tiene #checkout o #contacto
