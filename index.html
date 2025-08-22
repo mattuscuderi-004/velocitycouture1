@@ -968,15 +968,8 @@
             background: linear-gradient(90deg, transparent, rgba(10, 25, 47, 0.1), transparent);
             transition: all 0.5s;
         }
-        .size-option:hover::before, .color-option:hover::before, .shipping-option:hover::before {
+        .size-option:hover::before {
             left: 100%;
-        }
-        .size-option.selected, .color-option.selected, .shipping-option.selected {
-            background-color: var(--azul-maro);
-            color: var(--blanco);
-            border-color: var(--azul-maro);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(10, 25, 47, 0.2);
         }
         .color-option {
             width: 36px;
@@ -1773,6 +1766,143 @@
             transform: translateY(-2px);
         }
 
+        /* Contact Page */
+        .contact-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--blanco);
+            z-index: 1100;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .contact-page.active {
+            display: block;
+        }
+        .contact-header {
+            background-color: var(--azul-maro);
+            color: var(--blanco);
+            padding: 20px 40px;
+            text-align: center;
+        }
+        .contact-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .contact-header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .contact-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .contact-title {
+            font-size: 28px;
+            color: var(--azul-maro);
+            margin-bottom: 10px;
+        }
+        .contact-description {
+            font-size: 16px;
+            color: var(--gris-oscuro);
+            line-height: 1.6;
+        }
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: var(--gris-oscuro);
+        }
+        .contact-method i {
+            font-size: 24px;
+            color: var(--azul-maro);
+        }
+        .contact-form {
+            background-color: var(--gris);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--azul-maro);
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--gris-claro);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background-color: var(--blanco);
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--azul-maro);
+            outline: none;
+        }
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .submit-btn {
+            width: 100%;
+            background-color: var(--azul-maro);
+            color: var(--blanco);
+            border: none;
+            padding: 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.5s;
+        }
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        .submit-btn:hover {
+            background-color: var(--negro);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
         /* Footer Styles */
         .footer {
             background-color: var(--azul-maro);
@@ -1906,7 +2036,7 @@
                 <li><a class="nav-link" data-section="inicio">Inicio</a></li>
                 <li><a class="nav-link" data-section="productos">Productos</a></li>
                 <li><a class="nav-link" data-section="quienes-somos">Quiénes Somos</a></li>
-                <li><a href="https://mattuscuderi-004.github.io/velocitycouture1/#contacto">Contacto</a></li>
+                <li><a class="nav-link" data-section="contacto">Contacto</a></li>
             </ul>
             <div class="search-cart">
                 <div class="search-icon">🔍</div>
@@ -1921,7 +2051,7 @@
             <li><a class="mobile-nav-link" data-section="inicio">Inicio</a></li>
             <li><a class="mobile-nav-link" data-section="productos">Productos</a></li>
             <li><a class="mobile-nav-link" data-section="quienes-somos">Quiénes Somos</a></li>
-            <li><a href="https://mattuscuderi-004.github.io/velocitycouture1/#contacto">Contacto</a></li>
+            <li><a class="mobile-nav-link" data-section="contacto">Contacto</a></li>
         </ul>
     </div>
     <!-- Hero Section -->
@@ -2468,6 +2598,61 @@
         </div>
     </div>
 
+    <!-- Contact Page -->
+    <div class="contact-page">
+        <div class="contact-header">
+            <h1>Contáctanos</h1>
+            <p>Estamos aquí para ayudarte con cualquier consulta</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2 class="contact-title">Estamos para ayudarte</h2>
+                <p class="contact-description">¿Tienes alguna pregunta sobre nuestros productos, envíos o devoluciones? No dudes en contactarnos. Nuestro equipo está disponible para asistirte y asegurarnos de que tu experiencia con Velocity Couture sea excelente.</p>
+                
+                <div class="contact-method">
+                    <i>📱</i>
+                    <span><strong>WhatsApp:</strong> +54 9 11 1234-5678</span>
+                </div>
+                <div class="contact-method">
+                    <i>✉️</i>
+                    <span><strong>Email:</strong> hola@velocitycouture.com</span>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Contáctanos directamente</h3>
+                <form id="contact-form" action="https://formspree.io/f/manbrejz" method="POST">
+                    <div class="form-group">
+                        <label for="contact-name">Nombre</label>
+                        <input type="text" id="contact-name" name="name" required>
+                        <div class="error" id="name-error-contact"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" name="email" required>
+                        <div class="error" id="email-error-contact"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone">Teléfono</label>
+                        <input type="tel" id="contact-phone" name="phone" required>
+                        <div class="error" id="phone-error-contact"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-subject">Asunto</label>
+                        <input type="text" id="contact-subject" name="subject" required>
+                        <div class="error" id="subject-error-contact"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-message">Mensaje</label>
+                        <textarea id="contact-message" name="message" required></textarea>
+                        <div class="error" id="message-error-contact"></div>
+                    </div>
+                    <input type="hidden" name="_next" value="https://mattuscuderi-004.github.io/velocitycouture1/#contacto" />
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
@@ -2542,7 +2727,11 @@
         document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 const section = link.getAttribute('data-section');
-                scrollToSection(section);
+                if (section === 'contacto') {
+                    window.location.hash = 'contacto';
+                } else {
+                    scrollToSection(section);
+                }
             });
         });
         // Botón de logo
@@ -2867,7 +3056,11 @@
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
                 const section = link.getAttribute('data-section');
-                scrollToSection(section);
+                if (section === 'contacto') {
+                    window.location.hash = 'contacto';
+                } else {
+                    scrollToSection(section);
+                }
             });
         });
 
@@ -2925,7 +3118,72 @@
             paymentMethod: 'transferencia'
         };
 
-        // Detectar si la URL tiene #checkout
+        // === CONTACT PAGE ===
+        const contactPage = document.querySelector('.contact-page');
+        const contactForm = document.getElementById('contact-form');
+
+        // Validar y enviar formulario de contacto
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let valid = true;
+            const name = document.getElementById('contact-name');
+            const email = document.getElementById('contact-email');
+            const phone = document.getElementById('contact-phone');
+            const subject = document.getElementById('contact-subject');
+            const message = document.getElementById('contact-message');
+
+            const nameError = document.getElementById('name-error-contact');
+            const emailError = document.getElementById('email-error-contact');
+            const phoneError = document.getElementById('phone-error-contact');
+            const subjectError = document.getElementById('subject-error-contact');
+            const messageError = document.getElementById('message-error-contact');
+
+            // Validaciones
+            if (!name.value.trim()) {
+                nameError.textContent = 'El nombre es obligatorio';
+                valid = false;
+            } else {
+                nameError.textContent = '';
+            }
+
+            if (!email.value.trim()) {
+                emailError.textContent = 'El email es obligatorio';
+                valid = false;
+            } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+                emailError.textContent = 'El email no es válido';
+                valid = false;
+            } else {
+                emailError.textContent = '';
+            }
+
+            if (!phone.value.trim()) {
+                phoneError.textContent = 'El teléfono es obligatorio';
+                valid = false;
+            } else {
+                phoneError.textContent = '';
+            }
+
+            if (!subject.value.trim()) {
+                subjectError.textContent = 'El asunto es obligatorio';
+                valid = false;
+            } else {
+                subjectError.textContent = '';
+            }
+
+            if (!message.value.trim()) {
+                messageError.textContent = 'El mensaje es obligatorio';
+                valid = false;
+            } else {
+                messageError.textContent = '';
+            }
+
+            if (valid) {
+                alert('¡Mensaje enviado! Nos pondremos en contacto contigo pronto.');
+                contactForm.reset();
+            }
+        });
+
+        // Detectar si la URL tiene #checkout o #contacto
         function checkHash() {
             if (window.location.hash === '#checkout' && cartProducts.length > 0) {
                 updateCheckoutStep1();
@@ -2934,6 +3192,14 @@
             } else if (window.location.hash === '#contacto') {
                 contactPage.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                // Resaltar el botón de contacto en el header
+                const contactLink = document.querySelector('a[data-section="contacto"]');
+                if (contactLink) {
+                    contactLink.classList.add('highlight-contact');
+                    setTimeout(() => {
+                        contactLink.classList.remove('highlight-contact');
+                    }, 2000);
+                }
             } else {
                 checkoutPage.classList.remove('active');
                 contactPage.classList.remove('active');
@@ -3136,87 +3402,14 @@
             ratingText.textContent = 'Seleccioná una calificación';
         });
 
-        // === CONTACT PAGE ===
-        const contactPage = document.querySelector('.contact-page');
-        const contactForm = document.getElementById('contact-form');
-
-        // Validar y enviar formulario de contacto
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            let valid = true;
-            const name = document.getElementById('contact-name');
-            const email = document.getElementById('contact-email');
-            const phone = document.getElementById('contact-phone');
-            const subject = document.getElementById('contact-subject');
-            const message = document.getElementById('contact-message');
-
-            const nameError = document.getElementById('name-error-contact');
-            const emailError = document.getElementById('email-error-contact');
-            const phoneError = document.getElementById('phone-error-contact');
-            const subjectError = document.getElementById('subject-error-contact');
-            const messageError = document.getElementById('message-error-contact');
-
-            // Validaciones
-            if (!name.value.trim()) {
-                nameError.textContent = 'El nombre es obligatorio';
-                valid = false;
-            } else {
-                nameError.textContent = '';
-            }
-
-            if (!email.value.trim()) {
-                emailError.textContent = 'El email es obligatorio';
-                valid = false;
-            } else if (!/\S+@\S+\.\S+/.test(email.value)) {
-                emailError.textContent = 'El email no es válido';
-                valid = false;
-            } else {
-                emailError.textContent = '';
-            }
-
-            if (!phone.value.trim()) {
-                phoneError.textContent = 'El teléfono es obligatorio';
-                valid = false;
-            } else {
-                phoneError.textContent = '';
-            }
-
-            if (!subject.value.trim()) {
-                subjectError.textContent = 'El asunto es obligatorio';
-                valid = false;
-            } else {
-                subjectError.textContent = '';
-            }
-
-            if (!message.value.trim()) {
-                messageError.textContent = 'El mensaje es obligatorio';
-                valid = false;
-            } else {
-                messageError.textContent = '';
-            }
-
-            if (valid) {
-                alert('¡Mensaje enviado! Nos pondremos en contacto contigo pronto.');
-                contactForm.reset();
-            }
-        });
-
         // Efecto para el botón "Ir a Contacto" en el footer
         document.querySelector('.footer-contact-btn').addEventListener('click', (e) => {
             e.preventDefault();
             // Ir al header
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
-            // Resaltar el botón de contacto en el header
-            const contactLink = document.querySelector('a[data-section="contacto"]');
-            if (contactLink) {
-                // Añadir clase de resaltado
-                contactLink.classList.add('highlight-contact');
-                // Quitarla después de 2 segundos
-                setTimeout(() => {
-                    contactLink.classList.remove('highlight-contact');
-                }, 2000);
-            }
+            // Activar hash
+            window.location.hash = 'contacto';
         });
     </script>
 </body>
