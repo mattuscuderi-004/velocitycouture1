@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -3360,23 +3360,83 @@ contactForm.addEventListener('submit', (e) => {
             document.getElementById('final-total').textContent = `$${total.toLocaleString('es-AR')}`;
             document.getElementById('final-discount-row').style.display = method === 'transferencia' ? 'flex' : 'none';
         }
+// Finalizar compra
+finishPurchase.addEventListener('click', async () => {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const zip = document.getElementById('zip').value.trim();
 
-        // Finalizar compra
-        finishPurchase.addEventListener('click', () => {
-            const name = document.getElementById('name').value;
-            thankYouPage.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            
-            // Reiniciar todo
-            cartProducts = [];
-            totalAmount = 0;
-            updateCart();
-            cart.classList.remove('open');
-            cartOverlay.classList.remove('active');
-            checkoutPage.classList.remove('active');
-            window.location.hash = ''; // Limpiar hash
-            document.body.style.overflow = 'auto';
+    if (!name || !email || !phone || !address || !city || !zip) {
+        alert("Por favor, completá todos los campos.");
+        return;
+    }
+
+    // Generar número de pedido único
+    const orderId = 'VC-' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 100);
+
+    // Datos de los productos
+    const productsList = cartProducts.map(p => 
+        `${p.name} (Talle: ${p.size}, Color: ${p.color}, Cantidad: ${p.quantity})`
+    ).join('\n');
+
+    // Datos del pedido
+    const orderData = {
+        id: orderId,
+        name: name,
+        email: email,
+        phone: phone,
+        address: address,
+        city: city,
+        zip: zip,
+        products: productsList,
+        subtotal: `$${checkoutData.subtotal.toLocaleString('es-AR')}`,
+        shipping: checkoutData.shipping === 0 ? 'Gratis' : `$${checkoutData.shipping.toLocaleString('es-AR')}`,
+        discount: checkoutData.discount > 0 ? `-$${checkoutData.discount.toLocaleString('es-AR')}` : 'No aplica',
+        total: `$${checkoutData.total.toLocaleString('es-AR')}`,
+        paymentMethod: document.querySelector('.payment-method.selected')?.textContent.trim() || 'No especificado'
+    };
+
+    try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwtUveZ7xkk3W7spSDPR1jR45C23OdTS5gsDOr0AlmqylLdf2yQc7DFVakKXuU0lTYwSw/exec', {
+            method: 'POST',
+            mode: 'no-cors', // ⚠️ Importante: no-cors para GitHub Pages
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderData)
         });
+
+        // Como es no-cors, no podemos verificar response.ok, pero el pedido se envía
+        console.log('Pedido enviado a Google Sheets:', orderData);
+
+        // Mostrar pantalla de agradecimiento
+        document.getElementById('order-id-display').textContent = orderId;
+        thankYouPage.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Resetear todo
+        cartProducts = [];
+        totalAmount = 0;
+        updateCart();
+        cart.classList.remove('open');
+        cartOverlay.classList.remove('active');
+        checkoutPage.classList.remove('active');
+        window.location.hash = '';
+        document.body.style.overflow = 'auto';
+
+        // Guardar localmente (backup)
+        const orders = JSON.parse(localStorage.getItem('velocityOrders') || '[]');
+        orders.push({ id: orderId, data: orderData, date: new Date().toISOString() });
+        localStorage.setItem('velocityOrders', JSON.stringify(orders));
+
+    } catch (error) {
+        console.error('Error al enviar el pedido:', error);
+        alert('Hubo un problema. Por favor, contactanos por WhatsApp con tu pedido.');
+    }
+});
 
         // Calificación
         ratingStars.forEach(star => {
