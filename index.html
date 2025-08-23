@@ -3412,51 +3412,5 @@ contactForm.addEventListener('submit', (e) => {
             window.location.hash = 'contacto';
         });
     <script>
-  const scriptURL = "https://script.google.com/macros/s/AKfycby7tynqYFqN7FdVoQdVWguk-8SV6kDECBw7VFFIEWejKXEnNB9BD0Zef1HQW-Blsj5sKA/exec"; 
-  const finalizarBtn = document.getElementById("FINALIZAR COMPRA");
-
-  finalizarBtn.addEventListener("click", () => {
-    // Datos del cliente (acá podés abrir un modal o pedirlos en inputs)
-    const nombre = prompt("Ingrese su nombre completo:");
-    const email = prompt("Ingrese su correo electrónico:");
-    const telefono = prompt("Ingrese su teléfono:");
-    const direccion = prompt("Ingrese su dirección:");
-    const ciudad = prompt("Ingrese su ciudad:");
-    const codigo_postal = prompt("Ingrese su código postal:");
-    const metodo_pago = prompt("Ingrese su método de pago:");
-
-    // Datos del carrito (ejemplo: convertir array en texto)
-    let carritoTexto = "";
-    carrito.forEach(item => {
-      carritoTexto += `${item.nombre} - Talle: ${item.talle} - Cantidad: ${item.cantidad}\n`;
-    });
-
-    // Preparar objeto de datos
-    const data = {
-      nombre,
-      email,
-      telefono,
-      direccion,
-      ciudad,
-      codigo_postal,
-      metodo_pago,
-      carrito: carritoTexto
-    };
-
-    // Enviar a Google Sheets
-    fetch(scriptURL, {
-      method: "POST",
-      body: JSON.stringify(data)
-    })
-    .then(res => res.text())
-    .then(msg => {
-      alert("✅ Compra registrada. " + msg);
-      // acá podrías vaciar el carrito si querés
-      carrito = [];
-    })
-    .catch(err => console.error(err));
-  });
-</script>
-
 </body>
 </html>
